@@ -38,22 +38,25 @@
       return {
         tableData: [],
         pageSize:10,
-        pageNo:0
+        pageNo:1
       }
     },
 
     created () {
-
+      this.page(0,10)
     },
     methods:{
       prev(arg){
+        this.page(arg,10)
         console.log(arg)
       },
       next(arg){
+        this.pageNo=arg
+        this.page(arg,10)
         console.log(arg)
       },
-      page(){
-        this.$http.get('/item/list',{this.pageSize})
+      page(pageNo,pageSize){
+        this.$http.get('/item/list'+'?page='+pageNo,{})
           .then(response=>{
             console.log(response)
             if(response.data.code===0){
