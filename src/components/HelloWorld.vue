@@ -2,6 +2,7 @@
   <div>
     <yes-or-no-select v-bind:options="options"></yes-or-no-select>
     <demo1></demo1>
+    <router-link to="/foo">Go to Foo</router-link>
   </div>
 
 
