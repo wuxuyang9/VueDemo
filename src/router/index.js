@@ -23,6 +23,10 @@ import load from '@/components/load'
 
 
 import  form from '@/components/form'
+
+import  zuidaima from  '@/components/zuidaima'
+
+import  zuidaimaform from '@/components/zuidaimaform'
 Vue.use(Router)
 
 export default new Router({
@@ -104,6 +108,14 @@ export default new Router({
     {
       path:'/form',
       component:form
+    },
+    {
+      path:'/zuidaima',
+      component:zuidaima
+    },
+    {
+      path:'/zuidaimaform',
+      component:zuidaimaform
     }
   ]
 })

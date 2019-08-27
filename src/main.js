@@ -35,7 +35,7 @@ router.afterEach(transition => {
 Vue.prototype.$http = axios
 
 // 一些默认的参数
-axios.defaults.baseURL = 'http://127.0.0.1:8089/api'
+axios.defaults.baseURL = 'http://127.0.0.1:8081/api'
 
 // 请求拦截器：在发送请求前拦截
 axios.interceptors.request.use(config => {

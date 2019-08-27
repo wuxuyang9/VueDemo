@@ -1,5 +1,12 @@
 <template>
  <div>
+
+   <el-row>
+     <router-link to="/form"><el-button type="primary" round>主要按钮</el-button></router-link>
+
+     <el-button type="primary" round @click="toForm">主要按钮1</el-button>
+   </el-row>
+
    <el-table
      :data="tableData"
      style="width: 100%">
@@ -68,6 +75,10 @@
           }).catch(error=>{
           console.log(error)
         })
+      },
+
+      toForm(){
+        this.$router.push('form')
       }
 
     }

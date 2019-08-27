@@ -27,7 +27,7 @@
 
 -->
 
-  {{res}}
+
 
     <router-view/>
   </div>
