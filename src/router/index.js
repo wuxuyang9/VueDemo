@@ -131,7 +131,10 @@ export default new Router({
     },
     {
       path:'/car',
-      component:car
+      component:car,
+      meta: {
+        title: '吴旭阳'
+      }
     }
   ]
 })

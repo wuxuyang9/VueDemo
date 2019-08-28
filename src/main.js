@@ -34,8 +34,11 @@ router.afterEach(transition => {
 // 给Vue实例添加一个是个属性，这样在每个实例中就可以使用this.$http来访问axios实例了
 Vue.prototype.$http = axios
 
+
+
+
 // 一些默认的参数
-axios.defaults.baseURL = 'http://127.0.0.1:8081/api'
+axios.defaults.baseURL = 'http://192.168.10.227:8081/api'
 
 // 请求拦截器：在发送请求前拦截
 axios.interceptors.request.use(config => {
@@ -59,6 +62,14 @@ Vue.config.productionTip = false
 // Vue使用ElementUI
 Vue.use(ElementUI)
 Vue.use(Vuex)
+
+router.beforeEach((to, from, next) => {
+  /* 路由发生变化修改页面title */
+  if (to.meta.title) {
+    document.title = to.meta.title
+  }
+  next()
+})
 /*
 
 router.beforeEach((to,from,next)=>{
