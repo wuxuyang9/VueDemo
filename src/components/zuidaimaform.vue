@@ -1,10 +1,9 @@
 
 <template>
 
+
   <div>
-    Bar query: {{ this.$route.query }}
-  </div>
-  <!--<div>
+    id={{id}}
     <el-form ref="form" :model="form" label-width="80px">
       <el-form-item label="标题">
 
@@ -16,34 +15,52 @@
         <el-input v-model="form.url"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">立即创建</el-button>
-        <el-button>取消</el-button>
+        <el-button type="primary" @click="onModif" v-if="modifi">修改</el-button>
+        <el-button type="primary" @click="onSubmit" v-else>立即创建</el-button>
+        <el-button @click="cancel">取消</el-button>
       </el-form-item>
     </el-form>
-  </div>-->
+  </div>
 
 
 </template>
 <script>
   export default {
     name:'zuidaimaform',
+    props:['id'],
     data() {
       return {
-        id:'',
+        modifi:false,
         form: {
           title: '',
-          url: ''
+          url: '',
+          id:'',
+          createtime:'',
+          updatetime:''
         }
       }
     },
     created(){
-      console.log(this.$router.query.id+"9o--------")
+      console.log(this.id+"--------")
+      if(this.id){
+        this.modifi=true
+        this.$http.get('/zuiDaiMa/'+this.id,{}).then(response=>{
+          console.log(response)
+          if(response.data.code===0){
+            console.log(response.data.data.title)
+            this.form.title=response.data.data.title
+            this.form.url=response.data.data.url
+            this.form.id=response.data.data.id
+            this.createtime=response.data.data.createtime
+            this.updatetime=response.data.data.updatetime
+          }
+        })
+      }
     },
     beforeRouteEnter (to, from, next) {
       console.log('beforeRouteEnter123')
       console.log(to)
-      console.log(from.query.id)
-      console.log(this.$router.query.id+"----1233")
+      console.log(from)
       console.log('------------------')
 
       next()
@@ -57,6 +74,18 @@
             this.$router.push('zuidaima')
           }
         })
+      },
+      onModif(){
+        console.log('modifi')
+        this.$http.put('/zuiDaiMa/',this.form).then(response=>{
+          console.log(response)
+          if(response.data.code===0){
+            this.$router.push('zuidaima')
+          }
+        })
+      },
+      cancel(){
+        this.$router.push('zuidaima')
       }
     }
   }

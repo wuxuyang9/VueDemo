@@ -27,6 +27,11 @@ import  form from '@/components/form'
 import  zuidaima from  '@/components/zuidaima'
 
 import  zuidaimaform from '@/components/zuidaimaform'
+
+import  carform from '@/components/carform'
+
+
+import  car from '@/components/car'
 Vue.use(Router)
 
 export default new Router({
@@ -115,7 +120,18 @@ export default new Router({
     },
     {
       path:'/zuidaimaform',
-      component:zuidaimaform
+      component:zuidaimaform,
+      props:(route)=>({
+        id:route.query.id
+      })
+    },
+    {
+      path:'/carform',
+      component:carform
+    },
+    {
+      path:'/car',
+      component:car
     }
   ]
 })

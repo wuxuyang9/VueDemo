@@ -48,7 +48,7 @@
    <el-pagination
      background
      layout="prev, pager, next"
-     @prev-click="next"
+     @prev-click="prev"
      @next-click="next"
      @current-change="current"
      :page-size="pageSize"
@@ -69,23 +69,23 @@
         totalCount:0
       }
     },
-
     created () {
       this.page(0,10)
     },
     methods:{
       prev(arg){
-        this.page(arg-1,10)
+        this.pageNo=arg
+        this.page(arg,10)
         console.log(arg)
       },
       next(arg){
         this.pageNo=arg
-        this.page(arg-1,10)
+        this.page(arg,10)
         console.log(arg)
       },
       current(arg){
         this.pageNo=arg
-        this.page(arg-1,10)
+        this.page(arg,10)
         console.log(arg)
       },
       page(pageNo,pageSize){
