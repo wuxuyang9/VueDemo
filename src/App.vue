@@ -72,20 +72,7 @@ export default {
   },
 
   created () {
-    this.$http.post('/user/login',
-      {username:'admin',password:'admin'}
-    ).then(response=>{
-      console.log(response)
 
-
-    if(response.data.code===0){
-      this.res=response.data.data
-    }
-    })
-      .catch(error=>{
-
-        console.log(error)
-      })
   }
 }
 </script>

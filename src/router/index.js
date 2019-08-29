@@ -127,7 +127,10 @@ export default new Router({
     },
     {
       path:'/carform',
-      component:carform
+      component:carform,
+      props:(route)=>({
+        carId:route.query.carId
+      })
     },
     {
       path:'/car',

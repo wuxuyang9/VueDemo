@@ -1,5 +1,9 @@
 <template>
     <div class="divForm">
+      <el-row>
+        <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
+        <el-col :span="12"><div class="grid-content bg-purple-light"></div></el-col>
+      </el-row>
       <el-form ref="form" :model="form" label-width="80px">
         <el-form-item label="客户名称">
           <el-input v-model="form.customerName"></el-input>
@@ -40,7 +44,8 @@
           </el-col>-->
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit">立即创建</el-button>
+          <el-button type="primary" @click="onModifi" v-if="modifie">修改</el-button>
+          <el-button type="primary" @click="onSubmit" v-else>立即创建</el-button>
           <el-button @click="cancel">取消</el-button>
         </el-form-item>
       </el-form>
@@ -50,12 +55,15 @@
 <script>
   export default {
     name: 'carform',
+    props:['carId'],
     data(){
       return{
+        modifie:false,
         value: [],
         options: [],
         check:[],
         form: {
+          id:'',
           customerName: '',
           customerPhone: '',
           vehicleModelId: '',
@@ -105,6 +113,31 @@
           }
         }
       })
+
+      if(this.carId){
+        this.modifie=true
+        this.$http.get('/carUpkeep/'+this.carId,{}).then(response=>{
+          console.log(response)
+          if(response.data.code===0){
+            this.form.customerName=response.data.data.customerName
+            this.form.customerPhone=response.data.data.customerPhone
+            let arr=[]
+            arr.push(response.data.data.vehicleModelParentId+'')
+            arr.push(response.data.data.vehicleModelId+'')
+            this.value=arr
+            let check1=[]
+            check1=response.data.data.upkeepOperation.split(',');
+            console.log(check1)
+            this.check=check1
+            this.form.cost=response.data.data.cost
+            this.form.date=response.data.data.date
+            this.form.id=response.data.data.id
+          }
+        }).catch(error=>{
+          this.$message.error(error);
+        })
+
+      }
     },
     methods:{
       onSubmit() {
@@ -122,6 +155,8 @@
 
             this.$router.push("/car")
           }
+        }).catch(error=>{
+          this.$message.error(error.response.data);
         })
       },
       handleChange(value) {
@@ -129,6 +164,22 @@
       },
       cancel(){
         this.$router.push("car")
+      },
+      onModifi(){
+        this.$http.put('/carUpkeep/',this.form).then(response=>{
+          console.log(response)
+          if(response.data.code===0){
+            this.$message({
+              showClose: true,
+              message: '修改成功',
+              type: 'success'
+            });
+            this.$router.push("/car")
+
+          }
+        }).catch(error=>{
+          console.log(error)
+        })
       }
     }
   }
