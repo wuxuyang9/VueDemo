@@ -59,7 +59,7 @@
         @next-click="next"
         @current-change="current"
         :page-size="pageSize"
-        :total="totalCount">>
+        :total="totalCount">
       </el-pagination>
     </div>
 

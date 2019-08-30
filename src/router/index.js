@@ -32,6 +32,13 @@ import  carform from '@/components/carform'
 
 
 import  car from '@/components/car'
+
+
+import  demode from '@/components2/demo'
+
+import  pre from '@/components2/parent'
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -138,6 +145,14 @@ export default new Router({
       meta: {
         title: '吴旭阳'
       }
+    },
+    {
+      path:'/de',
+      component:demode
+    },
+    {
+      path:'/pre',
+      component:pre
     }
   ]
 })
