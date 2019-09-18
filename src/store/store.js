@@ -1,38 +1,40 @@
 import  Vue from 'vue'
 import Vuex from 'vuex'
 
+import user from  './user'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state:{
-    count:0,
+   /* count:0,
     pageParams:{},
     todos:[
       {id:1,text:'Task A',isDone:true},
       {id:2,text:'Task B',isDone:false}
-    ]
+    ]*/
   },
   mutations:{
-    increment(state,payload){
+   /* increment(state,payload){
       state.count+=payload.step
     },
-    decrement:state => state.count--
+    decrement:state => state.count--*/
   },
 
   actions:{
-    incrementAsync(context,payload){
+   /* incrementAsync(context,payload){
       console.log(context.state)
       console.log(context.getters)
 
       setTimeout(()=>{
         context.commit('increment',payload)
       },1000)
-    }
+    }*/
   }
   ,
 
   getters:{
-    doneTodos(state,getters){
+  /*  doneTodos(state,getters){
       return state.todos.filter(item=>item.isDone)
     },
 
@@ -45,9 +47,13 @@ export default new Vuex.Store({
         return state.todos.find(todo=>todo.id===id)
       }
       return myfun;
-    }
+    }*/
   }
+  ,
 
+  modules:{
+    user
+  }
 
 
 })

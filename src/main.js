@@ -16,6 +16,8 @@ import axios from 'axios'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
+import './assets/animate.css'
+
 // 配置NProgress选项
 // NProgress.configure({ })
 
@@ -38,7 +40,7 @@ Vue.prototype.$http = axios
 
 
 // 一些默认的参数
-axios.defaults.baseURL = 'http://192.168.10.227:8081/api'
+axios.defaults.baseURL = 'http://127.0.0.1:8086/api'
 
 // 请求拦截器：在发送请求前拦截
 axios.interceptors.request.use(config => {

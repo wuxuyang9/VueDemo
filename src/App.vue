@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-
+    <img src="./assets/logo.png" :class="tacke">
+    {{this.$store.getters.getToken}}
    <!-- <button @click="jumpFoo">字符串foo</button><br>
     <button @click="goback">回退</button><br>
     <button @click="$router.push({path:'foo'})">对象{path:'foo'}</button><br>
@@ -40,7 +40,8 @@ export default {
   name: 'App',
   data(){
     return{
-      res:{}
+      res:{},
+      tacke:'',
     }
   },
   methods:{
@@ -62,16 +63,15 @@ export default {
     }
   },
   computed:{
-    count(){
+  /*  count(){
       return this.$store.state.count
-    },
+    },*/
 
-    ...mapGetters({
-      doneTodoList:'doneTodos'
-    })
+
   },
 
   created () {
+    //this.tacke='animated infinite heartBeat'
 
   }
 }

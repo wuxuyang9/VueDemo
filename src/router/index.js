@@ -44,7 +44,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/dsf',
       name: 'HelloWorld',
       component: HelloWorld
     },
@@ -153,6 +153,10 @@ export default new Router({
     {
       path:'/pre',
       component:pre
+    },
+    {
+      path:'/',
+      component:()=>import('@/views/index.vue')
     }
   ]
 })

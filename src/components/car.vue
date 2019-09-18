@@ -1,9 +1,33 @@
 <template>
     <div>
 
-      <el-row>
-        <el-button type="primary" round @click="toForm">新增</el-button>
-      </el-row>
+
+
+
+        <div style="width: 100em; height:6em;">
+        <el-input v-model="input" placeholder="请输入内容" style="position:absolute;left: 10em;width: 16em">
+          <template slot="prepend">
+           电话
+          </template>
+        </el-input>
+
+          <el-input v-model="input" placeholder="请输入内容" style="position:absolute;left: 30em;width: 16em">
+            <template slot="prepend">
+              电话
+            </template>
+          </el-input>
+          <el-row style="position:absolute;left: 50em; ">
+            <el-button type="primary" round @click="toSearch" >搜索</el-button>
+          </el-row>
+        </div>
+
+
+        <div style="width: 150em;height: 4em">
+          <el-row>
+            <el-button type="primary" round @click="toForm" style="left: 3em;position: absolute">新增</el-button>
+          </el-row>
+        </div>
+
         <el-table
           :data="tableData"
           style="width: 100%">

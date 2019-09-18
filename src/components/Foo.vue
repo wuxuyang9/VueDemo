@@ -5,7 +5,9 @@
       <router-link to="/foo/foo1">foo1</router-link>
       <router-link to="/foo/foo2">foo2</router-link>-->
 
-      {{this.$store.state.pageParams}}
+      <!--{{this.$store.state.pageParams}}-->
+      <input v-model="token"/>
+      <h>{{token}}</h>
     <button @click="increment">+</button>
     </div>
 </template>
@@ -41,17 +43,23 @@
         next(false)
       }
     },
-
+    data(){
+      return{
+        token:''
+      }
+    },
     methods:{
       increment() {
         /* this.$store.commit('increment',{
           step:10
         })*/
-
+/*
         this.$store.dispatch('incrementAsync', {step: 10}).then((resp)=>{
           console.log(resp)
         }
-        )
+        )*/
+
+      this.$store.dispatch('setToken',this.token)
       }
     }
   }
